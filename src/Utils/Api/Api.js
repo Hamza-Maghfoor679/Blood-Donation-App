@@ -1,0 +1,15 @@
+export const API_ENDPOINTS = {
+  VERIFY_OTP: '/auth/verify_otp',
+  IS_EXISTS: '/auth/is_exists',
+  REGISTER_OR_UPDATE: '/auth/register_or_update',
+  PATIENT_CREATE_OR_UPDATE: '/user/patient_create_or_update_request',
+  patient_blood_request: '/user/patient_blood_request',
+  request_patient_list: '/user/request_patient_list',
+  donor_request_list: '/user/donor_request_list',
+  near_by_donor: '/user/near_by_donor',
+  view_patient_request: '/user/view_patient_request',
+  view_donor_request: '/user/view_donor_request',
+  add_donate_date: '/user/add_donate_date',
+  notifications_list: '/user/notifications_list',
+  delete_patient_blood_request: 'user/delete_patient_blood_request',
+};
