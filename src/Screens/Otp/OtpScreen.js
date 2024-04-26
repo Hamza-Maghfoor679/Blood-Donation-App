@@ -10,6 +10,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import Theme from '../../Utils/Theme';
 import Title from '../../CustomComponent/Title';
+import { isUserExist } from '../../Utils/Api/Auth/isUserExist';
 
 import Button from '../../CustomComponent/Button';
 import BackButton from '../../CustomComponent/BackButton';
@@ -110,80 +111,71 @@ const OtpScreen = ({navigation, route}) => {
     }
   };
 
-  // useEffect(() => {
-  //   sendOtp();
-  //   // console.log(userData)
-  // }, []);
 
   const CheckOtp = async () => {
     // setCode("111111")
     // setIsLoading(true); 
-    // const firebaseOptVerified = await confirmVerificationCode();
 
-    console.log('checking otp');
+    if (true) {
+      console.log(userData.phone_no);
 
-    // For testing purposes
-    // if (true) {
-    //   // console.log(userOriginalOpt);
-    //   console.log(userData.phone_no);
+      const isVerified = await veryfyOtp(userData.phone_no);
+      // const isVerified = true;
+      console.log("--------isVerified");
+      // console.log( isVerified);
+      setIsLoading(false); 
+      // console.log('firebaseOptVerified', firebaseOptVerified);
+      console.log("--------------------------------");
+      console.log(isVerified.is_verified);
+      if (isVerified !== null) {
+        console.log("insdide verification");
+        
+        let _userData = isVerified?.userData;
+        const token = isVerified.token;
+        const is_verified = isVerified.is_verified;
 
-    //   // Verify OTP
-    //   const isVerified = await veryfyOtp(userData.phone_no);
-    //   setIsLoading(false); // Set loading state to false after OTP verification
-    //   console.log('firebaseOptVerified', firebaseOptVerified);
-    //   if (isVerified && firebaseOptVerified) {
-    //     console.log('OTP verified');
+        if (is_verified === true) {
+          console.log('you are registered user');
+          dispatch(
+            setUserState({
+              ..._userData,
+              token: token,
+              is_verified: true,
+              isLoggedin: true,
+            }),
+          );
+         
 
-    //     const {is_verified, token} = isVerified;
-    //     let _userData = isVerified?.userData;
-
-    //     if (is_verified === true) {
-    //       // If user is verified
-    //       console.log('you are registered user');
-    //       dispatch(
-    //         setUserState({
-    //           ..._userData,
-    //           token: token,
-    //           is_verified: true,
-    //           isLoggedin: true,
-    //         }),
-    //       );
-    //       console.log(
-    //         '->>>>>>>>>>>>>>>>_________________>',
-    //         userData.isLoggedin,
-    //       );
-
-    //       dispatch(setChecks({InitialDataRender: true}));
-    //       navigation.replace('DrawerStack');
-    //     } else {
-    //       // If user is not verified yet but success is true
-    //       console.log('you are not registered user');
-    //       dispatch(
-    //         set_userData({
-    //           ...userData,
-    //           name: userName,
-    //           token: token,
-    //           is_verified: false,
-    //           isLoggedin: false,
-    //         }),
-    //       );
-    //       navigation.navigate('ConnectingDonor');
-    //     }
-    //   } else {
-    //     console.log('OTP not verified');
-    //     console.warn('Invalid code, please try again or resend code');
-    //   }
-    // }
-    if (code === otpMessage) {
-      navigation.navigate("ConnectingDonor")
-    } else {
-      Toast.show({
-        type: "error",
-        text1: "Invalid code, please try again or resend code",
-        visibilityTime: 3000,
-        autoHide: true
-      })
+          dispatch(setChecks({InitialDataRender: true}));
+          navigation.replace('DrawerStack');
+        } else {
+          console.log('you are not registered user');
+          dispatch(
+            setUserData({
+              ...userData,
+              name: userName,
+              token: token,
+              is_verified: false,
+              isLoggedin: false,
+            }),
+          );
+          navigation.navigate('ConnectingDonor');
+        }
+      } else {
+        console.log('OTP not verified');
+        console.warn('Invalid code, please try again or resend code');
+      }
     }
+    // if (code === otpMessage) {
+    //   navigation.navigate("ConnectingDonor")
+    // } else {
+    //   Toast.show({
+    //     type: "error",
+    //     text1: "Invalid code, please try again or resend code",
+    //     visibilityTime: 3000,
+    //     autoHide: true
+    //   })
+    // }
     setCode("")
   };
 
