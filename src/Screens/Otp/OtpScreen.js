@@ -10,7 +10,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import Theme from '../../Utils/Theme';
 import Title from '../../CustomComponent/Title';
-import { isUserExist } from '../../Utils/Api/Auth/isUserExist';
+import {isUserExist} from '../../Utils/Api/Auth/isUserExist';
 
 import Button from '../../CustomComponent/Button';
 import BackButton from '../../CustomComponent/BackButton';
@@ -33,14 +33,14 @@ import usePhoneAuthentication from '../../Utils/Hooks/usePhoneAuthentication';
 import {normalizePhoneNumber} from '../../Utils/normalizePhoneNumber';
 import {setChecks} from '../../redux/Checks';
 import Toast from 'react-native-toast-message';
+import { dispatchIsRemember } from '../../redux/remeberReducer';
 
 const CELL_COUNT = 6;
 
 const OtpScreen = ({navigation, route}) => {
+  const {otpMessage} = route.params;
 
-  const { otpMessage } = route.params;
-
-  console.log("otpMessage", otpMessage);
+  console.log('otpMessage', otpMessage);
 
   useEffect(() => {
     Toast.show({
@@ -71,7 +71,7 @@ const OtpScreen = ({navigation, route}) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  //   otp
+  // otp
 
   // useeffect for set otp to user redux
   // useEffect(() => {
@@ -111,25 +111,23 @@ const OtpScreen = ({navigation, route}) => {
     }
   };
 
-
   const CheckOtp = async () => {
-    // setCode("111111")
-    // setIsLoading(true); 
+    // setIsLoading(true);
 
     if (true) {
       console.log(userData.phone_no);
 
       const isVerified = await veryfyOtp(userData.phone_no);
       // const isVerified = true;
-      console.log("--------isVerified");
+      console.log('--------isVerified');
       // console.log( isVerified);
-      setIsLoading(false); 
+      setIsLoading(false);
       // console.log('firebaseOptVerified', firebaseOptVerified);
-      console.log("--------------------------------");
+      console.log('--------------------------------');
       console.log(isVerified.is_verified);
       if (isVerified !== null) {
-        console.log("insdide verification");
-        
+        console.log('inside verification');
+
         let _userData = isVerified?.userData;
         const token = isVerified.token;
         const is_verified = isVerified.is_verified;
@@ -144,7 +142,7 @@ const OtpScreen = ({navigation, route}) => {
               isLoggedin: true,
             }),
           );
-         
+          dispatch(dispatchIsRemember(true));
 
           dispatch(setChecks({InitialDataRender: true}));
           navigation.replace('DrawerStack');
@@ -166,17 +164,8 @@ const OtpScreen = ({navigation, route}) => {
         console.warn('Invalid code, please try again or resend code');
       }
     }
-    // if (code === otpMessage) {
-    //   navigation.navigate("ConnectingDonor")
-    // } else {
-    //   Toast.show({
-    //     type: "error",
-    //     text1: "Invalid code, please try again or resend code",
-    //     visibilityTime: 3000,
-    //     autoHide: true
-    //   })
-    // }
-    setCode("")
+
+    setCode('');
   };
 
   return (
@@ -329,7 +318,7 @@ const styles = StyleSheet.create({
     borderWidth: Theme.wp('0.1%'),
     borderColor: '#8D8D8D',
     textAlign: 'center',
-    color: Theme.txtblack
+    color: Theme.txtblack,
   },
   focusCell: {
     borderColor: '#000',

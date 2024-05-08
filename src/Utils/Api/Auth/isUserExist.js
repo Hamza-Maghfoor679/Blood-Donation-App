@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const isUserExist = async (phone, opt) => {
   try {
     const response = await axios.post(

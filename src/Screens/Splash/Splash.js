@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const Splash = ({navigation}) => {
   const [loader, setLoader] = useState(false);
   const userData = useSelector(state => state.user);
-
+  console.log("SplashScreen login status",userData.isLoggedin);
 
   // Inside your component
   useEffect(() => {

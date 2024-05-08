@@ -139,8 +139,9 @@ const RequestForBlood = ({navigation, route}) => {
     setIsLoading(false);
   };
 
-  const handlePlaceSelect = (data, details = null, setFieldValue) => {
+  const handlePlaceSelect = (data, details , setFieldValue) => {
     if (details) {
+      console.log("Data & Detail", );
       // Access latitude and longitude from the details object
       const {geometry} = details;
       const {location} = geometry;
@@ -156,8 +157,9 @@ const RequestForBlood = ({navigation, route}) => {
       setFieldValue('location', data.description);
       setFieldValue('latitude', location.lat);
       setFieldValue('longitude', location.lng);
-
+      
       setLocation(location);
+      console.log("location", location);
     } else {
       setFieldValue('location', '');
     }
@@ -251,7 +253,7 @@ const RequestForBlood = ({navigation, route}) => {
               source={
                 profileImage
                   ? {uri: profileImage}
-                  : require('../../Asset/Profile.png')
+                  : require('../../Asset/profileIcon.png')
               }
               resizeMode="cover"
             />

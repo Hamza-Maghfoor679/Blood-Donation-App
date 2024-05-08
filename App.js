@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootStack from './src/RootStack/RootStack';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -9,6 +9,7 @@ import {store, persistor} from './src/redux/Store';
 import axios from 'axios';
 import { jsiConfigureProps } from 'react-native-reanimated/lib/typescript/reanimated2/core';
 import Toast from 'react-native-toast-message';
+import { LogBox } from 'react-native';
 
 axios.defaults.baseURL = 'http://dev.kodextech.com/blood-donation/public/api';
 axios.interceptors.request.use(config => {
@@ -19,6 +20,7 @@ axios.interceptors.request.use(config => {
   console.log('Params:', JSON.stringify( config.params));
   return config;
 });
+
 
 // Add a response interceptor
 axios.interceptors.response.use(
@@ -36,6 +38,11 @@ axios.defaults.timeout = 50000; // Set timeout to 5 seconds (adjust as needed)
 
 const RootStackk = createStackNavigator();
 const App = () => {
+
+  useEffect(() => {
+    LogBox.ignoreAllLogs()
+    
+  }, [])
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

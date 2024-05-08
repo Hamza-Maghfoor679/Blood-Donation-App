@@ -67,6 +67,7 @@ const Home = ({navigation, route}) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   console.log(checks?.InitialDataRender);
+  
   console.log('is donoer', isDonor);
 
   const getNearbyDonor = async () => {
@@ -251,7 +252,7 @@ const Home = ({navigation, route}) => {
               width: Theme.wp('14%'),
               borderRadius: 100,
             }}
-            source={getImage(item) ?? require('../../Asset/Profile.png')}
+            source={getImage(item) ?? require('../../Asset/profileIcon.png')}
             resizeMode="cover"
           />
           <View
@@ -286,8 +287,18 @@ const Home = ({navigation, route}) => {
               <Feather name={'phone'} size={14} color={'#8D8D8D'} />
               <Title lable={item.phone_no} fsize={14} col={'#8D8D8D'} />
             </View>
+           
             <View>
               <Title lable={'A+ Positive'} col={Theme.themecol} fsize={14} />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: Theme.wp('1.2%'),
+              }}>
+                <Text style={{color: "black", fontWeight: 'bold'}}>Note:</Text>
+              <Title lable={item.note} fsize={14} col={'#8D8D8D'} />
             </View>
           </View>
 

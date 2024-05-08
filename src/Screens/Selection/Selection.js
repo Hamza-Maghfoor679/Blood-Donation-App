@@ -38,8 +38,6 @@ const Selection = ({navigation}) => {
     setIsLoading(true);
     // remove pin_code from the object
 
-    
-
     const {pin_code, ...userDataWithoutPin} = userData;
 
 
@@ -117,7 +115,7 @@ const Selection = ({navigation}) => {
            backgroundColor: 'green',
           }}
           source={
-            profileImage ? profileImage : require('../../Asset/Profile.png')
+            profileImage ? profileImage : require('../../Asset/profileIcon.png')
             // profileImage
           }
           resizeMode="cover"

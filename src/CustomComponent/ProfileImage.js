@@ -18,7 +18,7 @@ const ProfileImage = ({profileImage,lable}) => {
           borderRadius: 100,
         }}
         source={
-          profileImage ? profileImage : require('../Asset/Profile.png')
+          profileImage ? profileImage : require('../Asset/profileIcon.png')
           // profileImage
         }
         resizeMode="cover"

@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import BackButton from '../../CustomComponent/BackButton';
 import Theme from '../../Utils/Theme';
 import Title from '../../CustomComponent/Title';
@@ -24,37 +24,55 @@ const PrivacyAndPolicy = ({navigation}) => {
           fweight={'bold'}
         />
 
-        <Text style={[styles.text, {marginTop: Theme.hp('2%')}]}>
-          Lorem ipsum dolor sit amet consectetur. Nulla blandit in pulvinar
-          tempus amet. Orci proin blandit fusce diam imperdiet nullam{' '}
-          <Text style={styles.redText}> Learn More</Text>
+        <Text style={[styles.redText, {marginTop: Theme.hp('2%')}]}>
+          1. Information We Collect
         </Text>
         <Text style={styles.text}>
-          Lorem ipsum dolor I Agree consectetur. Nulla blandit in pulvinar
-          tempus amet. Orci proin blandit fusce diam imperdiet nullam iaculis
-          pulvinar et. Malesuada luctus nullam interdum risus. Lectus malesuada
-          massa pulvinar tincidunt nam interdum pellentesque amet elementum.
+          For Patients: We collect your name, contact details (email, phone),
+          blood type, and medical condition. For Vendors: We collect your name,
+          contact details, and organizational information.
+        </Text>
+        <Text style={[styles.redText, {marginTop: Theme.hp('2%')}]}>
+          2. How We Use Your Information
         </Text>
         <Text style={styles.text}>
-          Lorem ipsum dolor sit amet consectetur. Nulla blandit in pulvinar
-          tempus amet. <Text style={styles.redText}> Privacy Policy </Text>fusce
-          diam imperdiet nullam iaculis pulvinar et. Malesuada luctus nullam
-          interdum risus. Lectus malesuada massa pulvinar tincidunt nam interdum
-          pellentesque amet elementum.
+          Facilitate blood donations by matching donors with patients.
+          Communicate with you regarding donations or requests. Improve the
+          App's functionality. Mitigate risks or fraud.
+        </Text>
+        <Text style={[styles.redText, {marginTop: Theme.hp('2%')}]}>
+          3. Sharing Your Information
         </Text>
         <Text style={styles.text}>
-          <Text style={styles.redText}> </Text> Privacy Policy dolor sit amet
-          consectetur. Nulla blandit in pulvinar tempus amet. Orci proin blandit
-          fusce diam imperdiet nullam iaculis pulvinar et. Malesuada luctus
-          nullam interdum risus. Lectus malesuada massa pulvinar tincidunt nam
-          interdum pellentesque amet elementum.
+          We share your information with third-party service providers to
+          facilitate blood donations. Additionally, we may disclose information
+          to comply with legal obligations or protect our rights.
+        </Text>
+        <Text style={[styles.redText, {marginTop: Theme.hp('2%')}]}>
+          4. Data Retention
+        </Text>
+        <Text style={styles.text}>
+          We retain your data only as long as necessary for the purposes
+          outlined, unless required by law.
+        </Text>
+        <Text style={[styles.redText, {marginTop: Theme.hp('2%')}]}>
+          5. Your Rights
+        </Text>
+        <Text style={styles.text}>
+          You have the right to access, correct, or delete your personal
+          information. Contact us to exercise these rights.
+        </Text>
+        <Text style={[styles.redText, {marginTop: Theme.hp('2%')}]}>
+          6. Changes to Privacy Policy
+        </Text>
+        <Text style={styles.text}>
+          We may update this policy to reflect changes in practices or legal
+          requirements. Check periodically for updates.
         </Text>
       </View>
     </View>
   );
 };
-
-
 
 export default PrivacyAndPolicy;
 

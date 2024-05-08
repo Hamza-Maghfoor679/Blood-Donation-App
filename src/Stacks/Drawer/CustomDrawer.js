@@ -35,7 +35,7 @@ const CustomDrawer = props => {
           source={
             userData?.image
               ? {uri: userData.image}
-              : require('../../Asset/Profile.png')
+              : require('../../Asset/profileIcon.png')
           }
           resizeMode="cover"
         />

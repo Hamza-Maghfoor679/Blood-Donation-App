@@ -23,6 +23,7 @@ const initialState = {
   note: '',
   isLoggedin: false,
   pin_code: '',
+  rememberme: false
 };
 
 const userSlicee = createSlice({

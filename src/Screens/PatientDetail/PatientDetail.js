@@ -37,7 +37,7 @@ const PatientDetail = ({navigation, route}) => {
   const [isMy, setIsMy] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  console.log(id);
+  console.log('Donor name', JSON.stringify(data));
 
   const getPatientDetails = async () => {
     const {token} = userData;
@@ -148,11 +148,23 @@ const PatientDetail = ({navigation, route}) => {
           height: Theme.hp('35%'),
           width: Theme.wp('100%'),
           zIndex: 50,
+
+         
+          shadow: {
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+            elevation: 2,
+          },
         }}>
         <BackButton
           navigation={() => navigation.goBack()}
           lable={isDonor == 'donor' ? 'Patient Details' : 'Donor Details'}
-          black
+          white
         />
       </ImageBackground>
       <ScrollView
@@ -184,7 +196,7 @@ const PatientDetail = ({navigation, route}) => {
                 width: Theme.wp('14%'),
                 borderRadius: 100,
               }}
-              source={getImage(data) ?? require('../../Asset/Profile.png')}
+              source={getImage(data) ?? require('../../Asset/profileIcon.png')}
               resizeMode="cover"
             />
             <View style={{width: Theme.wp('60%'), left: Theme.wp('3%')}}>
@@ -194,7 +206,15 @@ const PatientDetail = ({navigation, route}) => {
                 fweight={'bold'}
                 col={'black'}
               />
+              <View
+                style={
+                  {
+                    // width: 40,
+                    // height: 40,
+                  }
+                }></View>
             </View>
+
             <View
               style={{
                 alignItems: 'flex-end',
@@ -219,16 +239,16 @@ const PatientDetail = ({navigation, route}) => {
           <View
             style={{
               borderWidth: 1,
-              justifyContent:'space-between',
+              justifyContent: 'space-between',
               borderColor: '#E6E6E6',
               width: Theme.wp('90%'),
               alignSelf: 'center',
             }}
           />
-         
+
           <View style={{height: Theme.hp('3%')}} />
           {/* view icon */}
-        
+
           {userData.user_type == 'donor' && (
             <View
               style={{

@@ -80,34 +80,44 @@ const PatientRequest = ({navigation}) => {
   }, [selectedItem]);
 
   const RenderItem = ({request}) => {
-    console.log(request);
+    console.log('request', request);
     return (
       <TouchableOpacity
         onPress={() => navigation.navigate('PatientDetail', {id: request?.id})}
         style={{
-          height: isDonor == 'donor' ? Theme.hp('20%') : Theme.hp('14%'),
           width: Theme.wp('90%'),
           alignSelf: 'center',
           borderRadius: 10,
           borderColor: '#8D8D8D',
           borderWidth: 0.3,
           marginVertical: Theme.hp('0.8%'),
-
           padding: 10,
         }}>
         <View style={{flexDirection: 'row'}}>
-          <Image
-            style={{
-              height: Theme.hp('7%'),
-              width: Theme.wp('14%'),
-              borderRadius: 100,
-            }}
-            source={getImageUri(request)}
-            resizeMode="cover"
-          />
+          {request?.image !== null ? (
+            <Image
+              style={{
+                height: Theme.hp('7%'),
+                width: Theme.wp('14%'),
+                borderRadius: 100,
+              }}
+              source={getImageUri(request)}
+              resizeMode="cover"
+            />
+          ) : (
+            <Image
+              style={{
+                height: Theme.hp('7%'),
+                width: Theme.wp('14%'),
+                borderRadius: 100,
+              }}
+              source={require('../../Asset/profileIcon.png')}
+              resizeMode="cover"
+            />
+          )}
+
           <View
             style={{
-              height: Theme.hp('10%'),
               justifyContent: 'space-between',
 
               width: Theme.wp('45%'),
@@ -147,6 +157,31 @@ const PatientRequest = ({navigation}) => {
                 col={Theme.themecol}
                 fsize={14}
               />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: Theme.wp('1.2%'),
+              }}>
+              {request?.note == null ? (
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={{color: 'black', fontWeight: 'bold'}}>
+                    Note:
+                  </Text>
+                  <Text style={{color: 'black'}}>
+                    {' '}
+                    Required Blood for a patient
+                  </Text>
+                </View>
+              ) : (
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={{color: 'black', fontWeight: 'bold'}}>
+                    Note:
+                  </Text>
+                  <Text style={{color: 'black'}}> {request?.note}</Text>
+                </View>
+              )}
             </View>
           </View>
 

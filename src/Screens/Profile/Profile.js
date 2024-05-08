@@ -261,7 +261,7 @@ const Profile = ({navigation, route}) => {
               width: Theme.wp('24%'),
               borderRadius: 100,
             }}
-            source={profileImage ?? require('../../Asset/Profile.png')}
+            source={profileImage ?? require('../../Asset/profileIcon.png')}
             resizeMode="cover"
           />
           <TouchableOpacity
